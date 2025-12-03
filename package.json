@@ -1,6 +1,6 @@
 {
-  "name": "crab",
-  "version": "1.13.0",
+  "name": "cnss",
+  "version": "0.1.0",
   "description": "Awesome class names composer",
   "main": "index.js",
   "module": "index.mjs",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kossnocorp/crab.git"
+    "url": "git+https://github.com/kossnocorp/cnss.git"
   },
   "keywords": [
     "class names"
@@ -27,9 +27,9 @@
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kossnocorp/crab/issues"
+    "url": "https://github.com/kossnocorp/cnss/issues"
   },
-  "homepage": "https://github.com/kossnocorp/crab#readme",
+  "homepage": "https://github.com/kossnocorp/cnss#readme",
   "devDependencies": {
     "@babel/cli": "^7.24.6",
     "@babel/core": "^7.24.6",

@@ -8,6 +8,6 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
-## v1.0.0 - 2024-??-??
+## v0.?.0 - 2025-??-??
 
 Initial public release

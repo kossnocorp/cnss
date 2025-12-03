@@ -1,14 +1,11 @@
-import { type Crab } from "./types.js";
-export type { Crab };
+import { type Cnss } from "./types.js";
 
-export const cn: Crab.Factory;
+export type { Cnss };
 
-export namespace cn {
+export const cnss: Cnss.Factory;
+
+export namespace cnss {
   export type Props<
-    Renderer extends Crab.Renderer<any> | Crab.GroupRenderer<any>
-  > = Crab.InferProps<Renderer>;
+    Renderer extends Cnss.Renderer<any> | Cnss.GroupRenderer<any>
+  > = Cnss.InferProps<Renderer>;
 }
-
-export type CNProps<
-  Renderer extends Crab.Renderer<any> | Crab.GroupRenderer<any>
-> = Crab.InferProps<Renderer>;

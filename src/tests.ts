@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
-import { cn } from ".";
+import { describe, expect, it } from "vitest";
+import { cnss } from ".";
 
-describe("crab", () => {
+describe("cnss", () => {
   describe("inline", () => {
     it("compiles inline class names", () => {
-      const className = cn(
+      const className = cnss(
         "inline-flex",
         false && "text-gray-800",
         null,
@@ -20,7 +20,7 @@ describe("crab", () => {
 
     type Color = "main" | "support" | "detail" | "brand";
 
-    const iconCn = cn<{ size: Size; color: Color; trigger: boolean }>()
+    const iconCn = cnss<{ size: Size; color: Color; trigger: boolean }>()
       .base("inline-flex")
       .size("medium", {
         xsmall: "h-3",
@@ -66,7 +66,7 @@ describe("crab", () => {
     });
 
     it("allows to omit the compound class names", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .base("inline-flex")
         .color("main", {
           main: "text-gray-800",
@@ -92,7 +92,7 @@ describe("crab", () => {
     });
 
     it("uses default values for compound class names", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .base("inline-flex")
         .color("main", {
           main: "text-gray-800",
@@ -118,7 +118,7 @@ describe("crab", () => {
     });
 
     it("allows to use compound shortcut with default value", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .base("inline-flex")
         .color("main", {
           main: "text-gray-800",
@@ -148,7 +148,7 @@ describe("crab", () => {
     });
 
     it("allows to use compound shortcut", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .base("inline-flex")
         .color("main", {
           main: "text-gray-800",
@@ -176,7 +176,7 @@ describe("crab", () => {
     });
 
     it("allows to use compound shortcut without wrapper array", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .base("inline-flex")
         .color("main", {
           main: "text-gray-800",
@@ -202,7 +202,7 @@ describe("crab", () => {
     });
 
     it("allows to omit the base class", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .color("main", {
           main: "text-gray-800",
           support: "text-gray-500",
@@ -228,7 +228,7 @@ describe("crab", () => {
     });
 
     it("allows to add extra class names", () => {
-      const iconCn = cn<{ color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ color: Color; trigger: boolean }>()
         .color("main", {
           main: "text-gray-800",
           support: "text-gray-500",
@@ -255,7 +255,7 @@ describe("crab", () => {
     });
 
     it("allows to omit the variants", () => {
-      const iconCn = cn<{ size: Size; color: Color; trigger: boolean }>()
+      const iconCn = cnss<{ size: Size; color: Color; trigger: boolean }>()
         .base("inline-flex")
         .size("medium")
         .color("main")
@@ -267,7 +267,7 @@ describe("crab", () => {
     it("compound shortcut API works with boolean props", () => {
       type ButtonColor = "default" | "action";
 
-      const buttonCn = cn<{
+      const buttonCn = cnss<{
         color: ButtonColor;
         transparent: boolean;
       }>()
@@ -302,7 +302,7 @@ describe("crab", () => {
     });
 
     it("normalizes compound variant arrays", () => {
-      const truncateCn = cn<{ clamp: boolean | 1 | 2; truncate: boolean }>()
+      const truncateCn = cnss<{ clamp: boolean | 1 | 2; truncate: boolean }>()
         .truncate(false)
         .clamp(false, {
           true: "line-clamp-1 overflow-hidden text-ellipsis",
@@ -327,7 +327,7 @@ describe("crab", () => {
 
     type Color = "primary" | "secondary";
 
-    const fieldCng = cn<{ size: Size }>().group(($) => ({
+    const fieldCng = cnss<{ size: Size }>().group(($) => ({
       label: $.base(
         "leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex justify-between"
       ).size("medium", {

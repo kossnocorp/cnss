@@ -1,4 +1,4 @@
-# Crab
+# cnss
 
 🚧 Work in progress
 
@@ -9,7 +9,7 @@
 Start by installing the package:
 
 ```sh
-npm i crab
+npm i cnss
 ```
 
 ## Changelog

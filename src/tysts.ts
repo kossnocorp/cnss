@@ -1,9 +1,9 @@
-import { cn } from ".";
+import { cnss } from ".";
 
 // Inline class names
 {
   const trigger = false;
-  const className = cn("inline-flex", trigger && "text-gray-800");
+  const className = cnss("inline-flex", trigger && "text-gray-800");
   className satisfies string;
   // @ts-expect-error
   className.notAny;
@@ -15,7 +15,7 @@ import { cn } from ".";
 
   type Color = "main" | "support" | "detail" | "brand";
 
-  const iconCn = cn<{
+  const iconCn = cnss<{
     size: Size;
     color: Color;
     trigger: boolean;
@@ -53,7 +53,7 @@ import { cn } from ".";
   className.notAny;
 
   // Props inferring
-  type Props = cn.Props<typeof iconCn>;
+  type Props = cnss.Props<typeof iconCn>;
   assertType<
     TypeEqual<
       Props,
@@ -71,7 +71,7 @@ import { cn } from ".";
 
 // No variants class name
 {
-  const inlineFlex = cn().base("inline-flex");
+  const inlineFlex = cnss().base("inline-flex");
   inlineFlex({ className: "text-gray-800" });
   // @ts-expect-error
   inlineFlex.notAny;
@@ -83,7 +83,7 @@ import { cn } from ".";
 
   type Color = "main" | "support" | "detail" | "brand";
 
-  const iconCn = cn<{ size: Size; color: Color; trigger: boolean }>()
+  const iconCn = cnss<{ size: Size; color: Color; trigger: boolean }>()
     .base("inline-flex")
     .size("medium", {
       xsmall: "h-3",
@@ -111,7 +111,7 @@ import { cn } from ".";
     });
 
   // Even shorter API
-  cn<{ size: Size; color: Color; trigger: boolean }>()
+  cnss<{ size: Size; color: Color; trigger: boolean }>()
     .base("inline-flex")
     .size("medium")
     .color("main")
@@ -131,7 +131,7 @@ import { cn } from ".";
   className.notAny;
 
   // Props inferring
-  type Props = cn.Props<typeof iconCn>;
+  type Props = cnss.Props<typeof iconCn>;
   assertType<
     TypeEqual<
       Props,
@@ -150,7 +150,7 @@ import { cn } from ".";
 
   type Color = "primary" | "secondary";
 
-  const fieldCng = cn<{ size: Size }>().group(($) => ({
+  const fieldCng = cnss<{ size: Size }>().group(($) => ({
     label: $.base(
       "leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex justify-between"
     ).size("medium", {
@@ -186,7 +186,7 @@ import { cn } from ".";
   classNameGroup.content.notAny;
 
   // Props inferring
-  type Props = cn.Props<typeof fieldCng>;
+  type Props = cnss.Props<typeof fieldCng>;
   assertType<
     TypeEqual<
       Props,
@@ -208,7 +208,7 @@ import { cn } from ".";
 
   type Color = "primary" | "secondary";
 
-  const fieldCng = cn().group(($) => ({
+  const fieldCng = cnss().group(($) => ({
     label: $<{ size: Size }>()
       .base(
         "leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex justify-between"
@@ -240,7 +240,7 @@ import { cn } from ".";
   classNameGroup.content.notAny;
 
   // Props inferring
-  type Props = cn.Props<typeof fieldCng>;
+  type Props = cnss.Props<typeof fieldCng>;
   assertType<
     TypeEqual<Props, { size?: Size | undefined; color?: Color | undefined }>
   >(true);
@@ -252,13 +252,13 @@ import { cn } from ".";
 
 // className prop
 {
-  const className = cn().base("inline-flex")({ className: "text-gray-800" });
+  const className = cnss().base("inline-flex")({ className: "text-gray-800" });
   className satisfies string;
   // @ts-expect-error
   className.notAny;
 
   // Allows passing undefined
-  cn().base("inline-flex")({ className: undefined });
+  cnss().base("inline-flex")({ className: undefined });
 }
 
 export function assertType<Type>(_value: Type) {}

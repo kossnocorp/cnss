@@ -1,7 +1,7 @@
 /**
- * Root Crab namespace. It contains all the Crab types.
+ * Root cnss namespace. It contains all the cnss types.
  */
-export namespace Crab {
+export namespace Cnss {
   /**
    * Main factory function.
    */
@@ -17,7 +17,7 @@ export namespace Crab {
    * Infers props type for the renderer.
    */
   export type InferProps<
-    Renderer extends Crab.Renderer<any> | GroupRenderer<any>
+    Renderer extends Cnss.Renderer<any> | GroupRenderer<any>
   > = Renderer extends (props?: infer Variants) => any
     ? Omit<Variants, "className">
     : never;
