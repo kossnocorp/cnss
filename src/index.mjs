@@ -1,12 +1,12 @@
-export function cn(...classNames) {
+export function cnss(...classNames) {
   if (classNames.length) return classNames.filter(Boolean).join(" ");
 
   const maps = {};
   let base;
 
-  const groupProxy = new Proxy(cn, {
+  const groupProxy = new Proxy(cnss, {
     get(_, name) {
-      if (name === "base") return cn().base;
+      if (name === "base") return cnss().base;
     },
   });
 
@@ -64,7 +64,7 @@ export function cn(...classNames) {
         return values;
       });
 
-      return cn(base, ...variants, props.className);
+      return cnss(base, ...variants, props.className);
     },
   });
 
