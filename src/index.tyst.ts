@@ -1,12 +1,11 @@
-import { cnss } from ".";
+import { ty } from "tyst";
+import { Cnss, cnss } from ".";
 
 // Inline class names
 {
   const trigger = false;
   const className = cnss("inline-flex", trigger && "text-gray-800");
-  className satisfies string;
-  // @ts-expect-error
-  className.notAny;
+  ty(className).is(ty<string>());
 }
 
 // Variant class names builder
@@ -48,22 +47,19 @@ import { cnss } from ".";
     });
 
   const className = iconCn({ size: "large" });
-  typeof className satisfies string;
-  // @ts-expect-error
-  className.notAny;
+  ty(className).is(ty<string>());
 
   // Props inferring
   type Props = cnss.Props<typeof iconCn>;
-  assertType<
-    TypeEqual<
-      Props,
-      {
-        size?: Size | undefined;
-        color?: Color | undefined;
-        trigger?: boolean | undefined;
-      }
-    >
-  >(true);
+  ty<Props>().is(
+    ty<{
+      size?: Size | undefined;
+      color?: Color | undefined;
+      trigger?: boolean | undefined;
+      // TODO: Tyst should report missing properties!
+      // flags?: number | undefined;
+    }>()
+  );
 
   // It allows passing undefined
   iconCn({ size: undefined });
@@ -73,8 +69,7 @@ import { cnss } from ".";
 {
   const inlineFlex = cnss().base("inline-flex");
   inlineFlex({ className: "text-gray-800" });
-  // @ts-expect-error
-  inlineFlex.notAny;
+  ty(inlineFlex).is(ty<Cnss.Renderer<undefined>>());
 }
 
 // Variant class names shortcut
@@ -126,22 +121,17 @@ import { cnss } from ".";
     });
 
   const className = iconCn({ size: "large" });
-  typeof className satisfies string;
-  // @ts-expect-error
-  className.notAny;
+  ty(className).is(ty<string>());
 
   // Props inferring
   type Props = cnss.Props<typeof iconCn>;
-  assertType<
-    TypeEqual<
-      Props,
-      {
-        size?: Size | undefined;
-        color?: Color | undefined;
-        trigger?: boolean | undefined;
-      }
-    >
-  >(true);
+  ty<Props>().is(
+    ty<{
+      size?: Size | undefined;
+      color?: Color | undefined;
+      trigger?: boolean | undefined;
+    }>()
+  );
 }
 
 // Class names groups
@@ -177,26 +167,19 @@ import { cnss } from ".";
 
   const classNameGroup = fieldCng({ size: "medium", color: "primary" });
 
-  typeof classNameGroup.label satisfies string;
-  // @ts-expect-error
-  classNameGroup.label.notAny;
-
-  typeof classNameGroup.content satisfies string;
-  // @ts-expect-error
-  classNameGroup.content.notAny;
+  ty(classNameGroup.label).is(ty<string>());
+  ty(classNameGroup.content).is(ty<string>());
 
   // Props inferring
   type Props = cnss.Props<typeof fieldCng>;
-  assertType<
-    TypeEqual<
-      Props,
-      {
-        size?: Size | undefined;
-        color?: Color | undefined;
-      }
-    >
-  >(true);
-  assertType<TypeEqual<keyof Props, "size" | "color">>(true);
+  ty<Props>().is(
+    ty<{
+      size?: Size | undefined;
+      color?: Color | undefined;
+      // TODO: Tyst should report it!
+      trigger?: boolean | undefined;
+    }>()
+  );
 
   // It allows passing undefined
   fieldCng({ size: undefined });
@@ -231,20 +214,17 @@ import { cnss } from ".";
 
   const classNameGroup = fieldCng({ size: "medium", color: "primary" });
 
-  typeof classNameGroup.label satisfies string;
-  // @ts-expect-error
-  classNameGroup.label.notAny;
-
-  typeof classNameGroup.content satisfies string;
-  // @ts-expect-error
-  classNameGroup.content.notAny;
+  ty(classNameGroup.label).is(ty<string>());
+  ty(classNameGroup.content).is(ty<string>());
 
   // Props inferring
   type Props = cnss.Props<typeof fieldCng>;
-  assertType<
-    TypeEqual<Props, { size?: Size | undefined; color?: Color | undefined }>
-  >(true);
-  assertType<TypeEqual<keyof Props, "size" | "color">>(true);
+  ty<Props>().is(
+    ty<{
+      size?: Size | undefined;
+      color?: Color | undefined;
+    }>()
+  );
 
   // It allows passing undefined
   fieldCng({ size: undefined });
@@ -253,18 +233,8 @@ import { cnss } from ".";
 // className prop
 {
   const className = cnss().base("inline-flex")({ className: "text-gray-800" });
-  className satisfies string;
-  // @ts-expect-error
-  className.notAny;
+  ty(className).is(ty<string>());
 
   // Allows passing undefined
   cnss().base("inline-flex")({ className: undefined });
 }
-
-export function assertType<Type>(_value: Type) {}
-
-export type TypeEqual<T, U> = Exclude<T, U> extends never
-  ? Exclude<U, T> extends never
-    ? true
-    : false
-  : false;

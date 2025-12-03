@@ -47,6 +47,9 @@ importers:
       typescript:
         specifier: 5.5.3
         version: 5.5.3
+      tyst:
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2
       vitest:
         specifier: ^1.6.0
         version: 1.6.0
@@ -1644,6 +1647,9 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  tdollar@0.1.1:
+    resolution: {integrity: sha512-LefzPvVPVyuD+Kfb0lyoGjrq3bJi8jCn+JgVgK0HgNGoo1/AVCcj8Kosaui51er837Ux1Txwf3671y6fZCZqRA==}
+
   tinybench@2.8.0:
     resolution: {integrity: sha512-1/eK7zUnIklz4JUUlL+658n58XO2hHLQfSk1Zf2LKieUjxidN16eKFEoDEfjHc3ohofSSqK3X5yO6VGb6iW8Lw==}
 
@@ -1671,6 +1677,9 @@ packages:
     resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  tyst@1.0.0-alpha.2:
+    resolution: {integrity: sha512-F1hJapm2L5FLNpF6rJf8Xq7YqjzoNYPn2D04bHrU1PfGKQvU4qbMc2IpcyqISjeT2kyjtChEFy9riIzcD/plbw==}
 
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
@@ -3386,6 +3395,8 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  tdollar@0.1.1: {}
+
   tinybench@2.8.0: {}
 
   tinypool@0.8.4: {}
@@ -3401,6 +3412,10 @@ snapshots:
   type-detect@4.0.8: {}
 
   typescript@5.5.3: {}
+
+  tyst@1.0.0-alpha.2:
+    dependencies:
+      tdollar: 0.1.1
 
   ufo@1.5.3: {}
 

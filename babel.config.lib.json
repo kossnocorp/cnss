@@ -37,9 +37,9 @@
 
   "ignore": [
     "src/**/*.d.ts",
-    "src/**/tests.ts",
-    "src/tests/**/*",
-    "src/**/tysts.ts",
-    "src/tysts/**/*"
+    "src/**/*.test.ts",
+    "src/__tests__/**/*",
+    "src/**/*.tyst.ts",
+    "src/__tysts__/**/*"
   ]
 }
