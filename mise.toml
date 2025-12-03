@@ -1,0 +1,10 @@
+[tools]
+## Stack
+node = { version = "lts", postinstall = "node -v > .nvmrc" }
+pnpm = "latest"
+
+[settings]
+# Enable extra features
+experimental = true
+# Ignore idiomatic version files
+idiomatic_version_file_enable_tools = []
