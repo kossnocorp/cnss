@@ -49,6 +49,18 @@ describe("cnss", () => {
       expect(className).toBe("inline-flex h-5 text-gray-800");
     });
 
+    it("works with boolean props when default is true", () => {
+      const blockCn = cnss<{
+        show: boolean;
+      }>().show(true, {
+        true: "flex",
+        false: "hidden",
+      });
+
+      expect(blockCn()).toBe("flex");
+      expect(blockCn({ show: false })).toBe("hidden");
+    });
+
     it("accepts variants", () => {
       const className = iconCn({ size: "large", color: "support" });
       expect(className).toBe("inline-flex h-6 text-gray-500");
@@ -145,6 +157,24 @@ describe("cnss", () => {
       expect(className).toBe(
         "inline-flex text-gray-800 cursor-pointer hover:text-gray-900"
       );
+    });
+
+    it("compound rules works with boolean props when default is true", () => {
+      const blockCn = cnss<{
+        size: Size;
+        gap: boolean;
+      }>()
+        .base("flex")
+        .gap(true)
+        .size("medium", {
+          medium: [[{ gap: true }, "gap-3"]],
+          large: [[{ gap: true }, "gap-4"]],
+        });
+
+      expect(blockCn()).toBe("flex gap-3");
+      expect(blockCn({ gap: false })).toBe("flex");
+      expect(blockCn({ size: "large", gap: true })).toBe("flex gap-4");
+      expect(blockCn({ size: "large", gap: false })).toBe("flex");
     });
 
     it("allows to use compound shortcut", () => {
@@ -299,6 +329,24 @@ describe("cnss", () => {
       expect(buttonCn({ color: "action", transparent: true })).toBe(
         "text-gray-800 hover:bg-gray-50 border-gray-400 hover:border-gray-500 bg-transparent border shadow-none"
       );
+    });
+
+    it("compound shortcut API works with boolean props when default is true", () => {
+      const blockCn = cnss<{
+        size: Size;
+        gap: boolean;
+      }>()
+        .base("flex")
+        .gap(true)
+        .size("medium", {
+          medium: { gap: { true: "gap-3" } },
+          large: { gap: { true: "gap-4" } },
+        });
+
+      expect(blockCn()).toBe("flex gap-3");
+      expect(blockCn({ gap: false })).toBe("flex");
+      expect(blockCn({ size: "large", gap: true })).toBe("flex gap-4");
+      expect(blockCn({ size: "large", gap: false })).toBe("flex");
     });
 
     it("normalizes compound variant arrays", () => {

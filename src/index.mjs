@@ -30,39 +30,41 @@ export function cnss(...classNames) {
     apply(_, __, args) {
       const props = args[0] || {};
 
-      const variants = Object.entries(maps).flatMap(([name, [dflt, map]]) => {
-        let value = map?.[props[name] || dflt];
-        if (typeof value === "string" || !value) return value;
+      const variants = Object.entries(maps).flatMap(
+        ([name, [default_, map]]) => {
+          let value = map?.[props[name] ?? default_];
+          if (typeof value === "string" || !value) return value;
 
-        // Normalize compound shortcuts like [{ truncate: true }, "truncate"]
-        if (typeof value?.[0] === "object" && typeof value?.[1] === "string")
-          value = [value];
+          // Normalize compound shortcuts like [{ truncate: true }, "truncate"]
+          if (typeof value?.[0] === "object" && typeof value?.[1] === "string")
+            value = [value];
 
-        // Normalize object compound shortcut to array
-        value = [].concat(value);
+          // Normalize object compound shortcut to array
+          value = [].concat(value);
 
-        const values = [typeof value[0] === "string" && value[0]];
-        value.forEach((vars) => {
-          if (typeof vars === "string") return;
+          const values = [typeof value[0] === "string" && value[0]];
+          value.forEach((vars) => {
+            if (typeof vars === "string") return;
 
-          if (Array.isArray(vars)) {
-            let matches = Object.entries(vars[0]).every(
-              ([prop, val]) => (props[prop] || maps[prop][0]) === val
+            if (Array.isArray(vars)) {
+              let matches = Object.entries(vars[0]).every(
+                ([prop, val]) => (props[prop] ?? maps[prop][0]) === val
+              );
+              if (matches) values.push(vars[1]);
+              return;
+            }
+
+            Object.entries(vars).forEach(([prop, map]) =>
+              Object.entries(map).forEach(
+                ([val, classNames]) =>
+                  String(props[prop] ?? maps[prop][0]) === val &&
+                  values.push(classNames)
+              )
             );
-            if (matches) values.push(vars[1]);
-            return;
-          }
-
-          Object.entries(vars).forEach(([prop, map]) =>
-            Object.entries(map).forEach(
-              ([val, classNames]) =>
-                String(props[prop] || maps[prop][0]) === val &&
-                values.push(classNames)
-            )
-          );
-        });
-        return values;
-      });
+          });
+          return values;
+        }
+      );
 
       return cnss(base, ...variants, props.className);
     },

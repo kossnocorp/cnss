@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    //#region test
+
+    {
+      "name": "test#debug",
+      "type": "node",
+      "request": "launch",
+      "autoAttachChildProcesses": true,
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+      "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "${relativeFile}"],
+      "smartStep": true,
+      "console": "integratedTerminal"
+    }
+
+    //#endregion
+  ]
+}
