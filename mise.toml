@@ -2,6 +2,8 @@
 ## Stack
 node = { version = "lts", postinstall = "node -v > .nvmrc" }
 pnpm = "latest"
+## Tools
+just = "latest"
 
 [settings]
 # Enable extra features
